@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const { token } = require('morgan');
 const { promisify } = require('util');
 const { decode } = require('punycode');
+const sendEmail = require('./email');
 
 exports.signup = async (req, res, next) => {
   try {
@@ -13,6 +14,7 @@ exports.signup = async (req, res, next) => {
       email: req.body.email,
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
+      role: req.body.role,
     });
 
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
@@ -91,14 +93,16 @@ exports.protect = async (req, res, next) => {
     // console.log(token);
     //2) verification token
 
-    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    const mySec = process.env.JWT_SECRET;
+    console.log(mySec + ' Secret of jwt');
+    const decoded = await promisify(jwt.verify)(token, mySec);
 
     console.log(decoded.toString + 'decode');
 
     //3) check if user still exist
-    console.log('User id ' + decoded._id);
+    console.log('User id ' + decoded.id);
 
-    const freshUser = await User.findById(decoded._id);
+    const freshUser = await User.findById(decoded.id);
 
     if (!freshUser) {
       return res.status(401).json({
@@ -108,6 +112,72 @@ exports.protect = async (req, res, next) => {
     }
 
     //4) check if user changed the password after the jwt issues
+    if (freshUser.changePasswordAfter(decoded.iat)) {
+      return res.status(401).json({
+        satus: 'fail',
+        message: 'Please login again',
+      });
+    }
+    req.user = freshUser;
+    next();
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
+
+exports.restrictTo = (...role) => {
+  return (req, res, next) => {
+    try {
+      //roles in array admin,lead-guy
+      if (!role.includes(req.user.role)) {
+        throw new Error('You are not authorized to delete it');
+      }
+      next();
+    } catch (err) {
+      res.status(401).json({
+        status: 'fail',
+        message: err.message,
+      });
+    }
+  };
+};
+
+exports.forgotPassword = async (req, res, next) => {
+  //get the user based on posted email
+  try {
+    const user = await User.findOne({ email: req.body.email });
+
+    if (!user) {
+      throw new Error(
+        'There is no user with this email address ' + req.body.email
+      );
+    }
+
+    //2) Generate a random reset token
+    const resetToken = user.createPasswordResetToken();
+    await user.save({ validateBeforeSave: false });
+
+    //send it to users email
+    const resetURL = `${req.protocol}://${req.get(
+      'host'
+    )}/api/v1/users/resetPassword/${resetToken}`;
+
+    const message = `Forgot your password ? submit a patch request with your new password and password confirm to 
+    ${resetURL}./n If you didn't forgot yur password Please ignore this email...!`;
+
+    await sendEmail({
+      email: user.email,
+      subject: 'Your password reset token',
+      message,
+    });
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Token sent to email',
+    });
     next();
   } catch (err) {
     res.status(400).json({
