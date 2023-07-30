@@ -1,15 +1,17 @@
 //- Header header is header is .header is class name in css 
 header.header
     nav.nav.nav--tours
-        a.nav__el(href='#') All Tours 
+        a.nav__el(href='/') All Tours 
     .header__logo 
         img(src='/img/logo-white.png' alt='Natours Logo')
-    nav.nav.nav--users
-        //- a.nav__el(href='#') My Booking
-        //- a.nav_el(href='#')
-        //-  img.nav__users-img(src='img/iser.jpg',alt='User Photo')
-            span Jonas
-        a.nav__el(href='/login') Log In 
-        a.nav__el.nav_el--cta(href='#') Sign Up
+    nav.nav.nav--user
+        if user
+            a.nav__el.nav__el--logout Log out
+            a.nav__el(href='/me')
+              img.nav__user-img(src=`/img/users/${user.photo}`,alt='User Photo')
+              span= `${user.name}`
+        else
+            a.nav__el(href='/login') Log In 
+            a.nav__el.nav_el--cta(href='#') Sign Up
 
       

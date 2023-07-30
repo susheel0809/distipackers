@@ -16,11 +16,10 @@ app.use(morgan('dev'));
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-
 app.use(cookieParser());
 
 app.use((req, res, next) => {
-  console.log('Hello from the middle ware ');
+  console.log('Hello from the middle ware');
   console.log('Cookies');
   console.log(req.cookies);
   next();
@@ -28,7 +27,6 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-
   console.log(req.cookies);
   next();
 });
