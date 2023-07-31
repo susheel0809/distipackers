@@ -17,4 +17,5 @@ router.get('/', authController.isLoggedIn, viewController.getOverview);
 router.get('/tour/:slug', authController.protect, viewController.getTour);
 router.get('/login', authController.isLoggedIn, viewController.setLogin);
 router.get('/me', authController.protect, viewController.getAccount);
+router.get('/gateway', viewController.consumeGetApi);
 module.exports = router;
