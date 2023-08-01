@@ -12,10 +12,11 @@ const authController = require('./../controllers/authController');
 //     user: 'susheel kumar',
 //   });
 // });
-
-router.get('/', authController.isLoggedIn, viewController.getOverview);
-router.get('/tour/:slug', authController.protect, viewController.getTour);
-router.get('/login', authController.isLoggedIn, viewController.setLogin);
-router.get('/me', authController.protect, viewController.getAccount);
-router.get('/gateway', viewController.consumeGetApi);
+router.get('/', viewController.setLogin);
+router.get('/warehouse-one-two', viewController.warehouseOneTwo);
+router.get('/signup', viewController.signUp);
+// router.get('/tour/:slug', authController.protect, viewController.getTour);
+// router.get('/login', authController.isLoggedIn, viewController.setLogin);
+// router.get('/me', authController.protect, viewController.getAccount);
+// router.get('/gateway', viewController.consumeGetApi);
 module.exports = router;

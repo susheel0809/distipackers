@@ -1,7 +1,6 @@
-html
-  head
-  body
-    table
+extends base
+block content
+  table
       thead 
         tr
           th Consolidator
@@ -11,5 +10,5 @@ html
         each stuffing in stuffingReportWarehouseOneTwo
             tr
                 td= stuffing.consolidator
-                td Maria Anders
-                td Germany
+                td= stuffing.arrived
+                td= stuffing.inward_cbm
