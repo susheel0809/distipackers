@@ -1,5 +1,4 @@
 const { default: axios } = require('axios');
-const Tour = require('../models/tourModel');
 const User = require('../models/userModel');
 
 exports.getOverview = async (req, res, next) => {
@@ -74,5 +73,11 @@ exports.allUsers = async (req, res) => {
   res.status(200).render('allUsers', {
     users,
     title: 'Users',
+  });
+};
+
+exports.myHome = (req, res) => {
+  res.status(200).render('base', {
+    title: 'Home ',
   });
 };

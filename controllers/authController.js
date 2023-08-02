@@ -5,8 +5,6 @@ const jwt = require('jsonwebtoken');
 const { token } = require('morgan');
 const { promisify } = require('util');
 const { decode } = require('punycode');
-const sendEmail = require('./email');
-const { use } = require('../routes/tourRoute');
 
 exports.signup = async (req, res, next) => {
   try {
@@ -239,44 +237,44 @@ exports.allowedTo = (...role) => {
   };
 };
 
-exports.forgotPassword = async (req, res, next) => {
-  //get the user based on posted email
-  try {
-    const user = await User.findOne({ email: req.body.email });
+// exports.forgotPassword = async (req, res, next) => {
+//   //get the user based on posted email
+//   try {
+//     const user = await User.findOne({ email: req.body.email });
 
-    if (!user) {
-      throw new Error(
-        'There is no user with this email address ' + req.body.email
-      );
-    }
+//     if (!user) {
+//       throw new Error(
+//         'There is no user with this email address ' + req.body.email
+//       );
+//     }
 
-    //2) Generate a random reset token
-    const resetToken = user.createPasswordResetToken();
-    await user.save({ validateBeforeSave: false });
+//     //2) Generate a random reset token
+//     const resetToken = user.createPasswordResetToken();
+//     await user.save({ validateBeforeSave: false });
 
-    //send it to users email
-    const resetURL = `${req.protocol}://${req.get(
-      'host'
-    )}/api/v1/users/resetPassword/${resetToken}`;
+//     //send it to users email
+//     const resetURL = `${req.protocol}://${req.get(
+//       'host'
+//     )}/api/v1/users/resetPassword/${resetToken}`;
 
-    const message = `Forgot your password ? submit a patch request with your new password and password confirm to 
-    ${resetURL}./n If you didn't forgot yur password Please ignore this email...!`;
+//     const message = `Forgot your password ? submit a patch request with your new password and password confirm to
+//     ${resetURL}./n If you didn't forgot yur password Please ignore this email...!`;
 
-    await sendEmail({
-      email: user.email,
-      subject: 'Your password reset token',
-      message,
-    });
+//     await sendEmail({
+//       email: user.email,
+//       subject: 'Your password reset token',
+//       message,
+//     });
 
-    res.status(200).json({
-      status: 'success',
-      message: 'Token sent to email',
-    });
-    next();
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err.message,
-    });
-  }
-};
+//     res.status(200).json({
+//       status: 'success',
+//       message: 'Token sent to email',
+//     });
+//     next();
+//   } catch (err) {
+//     res.status(400).json({
+//       status: 'fail',
+//       message: err.message,
+//     });
+//   }
+// };

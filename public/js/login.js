@@ -12,7 +12,7 @@ const login = async (email, password) => {
     if (res.data.status == 'success') {
       alert('Logged in Succesfully');
       window.setTimeout(() => {
-        location.assign('/warehouse-one-two');
+        location.assign('/home');
       }, 100);
     }
     console.log(res.data);

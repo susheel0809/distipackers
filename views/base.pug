@@ -19,7 +19,15 @@ html
 
         //- CONTENT 
     block content 
-        h1 Belongs to Home page 
+        table.table.table-borderless
+            tbody
+              tr 
+                td.btn-info
+                 a.navbar-brand(href='/warehouse-one-two')
+                  img(src='/img/warehouse_one_two.png', alt='logo', width='100%', height='600px')
+                td.btn.btn-info
+                 a.navbar-brand(href='/warehouse_three') 
+                  img(src='/img/warehouse_three.png', alt='logo', width='100%', height='600px')
 
         //- FOOTER 
     //- include _footer

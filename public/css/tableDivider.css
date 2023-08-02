@@ -1,23 +1,32 @@
 .outerDiv {
   /* background-color: #006699;
   color: #fff; */
-  height: auto;
+  /* height: auto;
   width: auto;
   margin: 0px auto;
   margin-top: 15px;
-  padding: 5px;
+  padding: 5px; */
+  display: flex;
+  /* padding: 10px; */
+  /* padding-left: 10px; */
+  /* padding-inline: 20px; */
+  /* padding-block-end: ; */
 }
 .leftDiv {
   /* background-color: #efefef;
   color: #000; */
-  height: auto;
+  /* height: auto;
   width: 48%;
-  float: left;
+  float: left; */
+  /* display: flex; */
+  flex: 48%;
 }
 .rightDiv {
   /* background-color: #efefef;
   color: #000; */
-  height: auto;
+  /* height: auto;
   width: 48%;
-  float: right;
+  float: right; */
+  flex: 48%;
+  padding-left: 10px;
 }

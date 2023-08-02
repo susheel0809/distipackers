@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const morgan = require('morgan');
-const tourRouter = require('./routes/tourRoute');
 const userRouter = require('./routes/userRoute');
 const viewRouter = require('./routes/viewRoutes');
 const cookieParser = require('cookie-parser');
@@ -35,7 +34,6 @@ app.use((req, res, next) => {
 app.use('/', viewRouter);
 
 // route;
-app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
 module.exports = app;
