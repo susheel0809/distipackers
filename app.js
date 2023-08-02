@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const userRouter = require('./routes/userRoute');
 const viewRouter = require('./routes/viewRoutes');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 //it is wriiter to use middle ware
 app.use(express.json());
@@ -23,6 +24,8 @@ app.use((req, res, next) => {
   console.log(req.cookies);
   next();
 });
+
+app.use(compression());
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();

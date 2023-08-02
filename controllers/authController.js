@@ -72,6 +72,14 @@ exports.login = async (req, res, next) => {
       });
     }
     console.log(user + 'Usr');
+
+    if (!user.active) {
+      return res.status(401).json({
+        status: 'fail',
+        message:
+          'Your profile is not verified yet. Please contact your Manager',
+      });
+    }
     //3 if everything is ok send token to client
     // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
     //   expiresIn: process.env.JWT_EXPIRES_IN,

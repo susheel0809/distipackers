@@ -8,16 +8,30 @@ console.log(process.env);
 
 const PORT = process.env.PORT || 8000;
 
+const DB = process.env.DATABASE;
+
 mongoose
-  .connect(process.env.DATABASE_LOCAL, {
+  .connect(DB, {
     useNewUrlParser: true,
+    useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: false,
+    useFindAndModify: true,
   })
   .then((con) => {
-    console.log('Connected to the db ');
-    console.log(con.connections);
+    console.log(con.connection);
+    console.log('Db Connection succesfull');
   });
+
+// mongoose
+//   .connect(process.env.DATABASE_LOCAL, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useFindAndModify: false,
+//   })
+//   .then((con) => {
+//     console.log('Connected to the db ');
+//     console.log(con.connections);
+//   });
 
 // const testTour = new Tour({
 //   name: 'Package name',

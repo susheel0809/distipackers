@@ -1,6 +1,6 @@
 extends base
 block content
-  table.table.table-striped.table-dark.table-hover
+  table.table.table-sm.table-hover
       thead.thead-dark
         tr
           th(scope='col') Name
@@ -14,7 +14,21 @@ block content
                 td= user.name
                 td= user.email
                 td= user.role
-                td= user.role
+                if user.active 
+                  td Active
+                else
+                  td In Active
                 td
-                 button.btn.btn-secondary(type='button') Update 
-                 button.btn.btn-danger(type='button') Delete
+                  if user.active
+                    form.form
+                      input#id.form_input(type='hidden',value=`${user._id}`)
+                      input#active.form_input(type='hidden',value='false')
+                      button.btn.btn-danger(type='submit') Mark Inactive
+                  else 
+                    form.form 
+                      input#id.form_input(type='hidden',value=`${user._id}`)
+                      input#active.form_input(type='hidden',value='true')
+                      button.btn.btn-success(type='submit') Mark As Active
+                 
+                    
+                
