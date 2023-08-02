@@ -1,0 +1,71 @@
+extends base
+block content
+  .outerDiv
+      .leftDiv
+          table.table.table-sm.table-hover
+            thead
+               tr.table-info
+                 th(scope='col') Consolidator
+                 th(scope='col') Plan Recevied
+                 th(scope='col') Running
+                 th(scope='col') Stuffed
+                 th(scope='col') Pending
+                 th(scope='col') Tues
+                 th(scope='col') Cbm
+            tbody
+              each stuffing in stuffingReportWarehouseOneTwo
+                if stuffing.consolidator=='TOTAL'
+                 tr.table-secondary
+                   td.table-success= stuffing.consolidator
+                   td= stuffing.plan_recevied
+                   td= stuffing.RUNNING  
+                   td= stuffing.STUFFED
+                   td= stuffing.PENDING
+                   td= stuffing.tues
+                   td= stuffing.cbm
+                else 
+                 tr
+                   td.table-success= stuffing.consolidator
+                   td= stuffing.plan_recevied
+                   td= stuffing.RUNNING  
+                   td= stuffing.STUFFED
+                   td= stuffing.PENDING
+                   td= stuffing.tues
+                   td= stuffing.cbm
+              tr 
+                td(colspan='8')
+                 button.btn.btn-success.btn-lg.btn-block(type='button')
+                  img(src='/img/download.svg', alt='excel', width='30px', height='25px')
+
+      .rightDiv
+          table.table.table-sm.table-hover
+            thead
+               tr.table-info
+                 th(scope='col') Consolidator
+                 th(scope='col') Plan Recevied
+                 th(scope='col') Running
+                 th(scope='col') Stuffed
+                 th(scope='col') Pending
+                 th(scope='col') Tues
+                 th(scope='col') Cbm
+            tbody
+              each stuffing in stuffingReportWarehouseOneTwo
+                if stuffing.consolidator=='TOTAL'
+                 tr.table-secondary
+                   td.table-success= stuffing.consolidator
+                   td= stuffing.plan_recevied
+                   td= stuffing.RUNNING  
+                   td= stuffing.STUFFED
+                   td= stuffing.PENDING
+                   td= stuffing.tues
+                   td= stuffing.cbm
+                else 
+                 tr
+                   td.table-success= stuffing.consolidator
+                   td= stuffing.plan_recevied
+                   td= stuffing.RUNNING  
+                   td= stuffing.STUFFED
+                   td= stuffing.PENDING
+                   td= stuffing.tues
+                   td= stuffing.cbm
+      

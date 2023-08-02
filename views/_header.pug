@@ -1,6 +1,6 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light
       .container-fluid
-        a.navbar-brand(href='/')  
+        a.navbar-brand(href='/warehouse-one-two')  
          img(src='/img/apple-touch-icon.png', alt='logo', width='80px', height='50px')
         button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarCollapse', aria-controls='navbarCollapse', aria-expanded='false', aria-label='Toggle navigation')
           span.navbar-toggler-icon
@@ -9,12 +9,13 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
             li.nav-item
               a.nav-link.active(aria-current='page', href='/warehouse-one-two') Warehouse 1-2
             li.nav-item
-              a.nav-link(href='#') Warehouse 3
-            //- li.nav-item
-            //-   a.nav-link(href='')  LogIn
-            //- li.nav-item
-            //-   a.nav-link(href='/signup')  Sign up
+              a.nav-link(href='/warehouse_three') Warehouse 3
+            if `${user.role}`=='admin'
+              li.nav-item
+                a.nav-link(href='/users') Users 
             li.nav-item
-              a.nav-link(href='#').nav__el.nav__el--logout Log out  
-            //- li.nav-item
-            //-   a.nav-link.disabled(href='#', tabindex='-1', aria-disabled='true') Disabled
+               a.nav-link(href='/me')  My Account
+            li.nav-item
+               a.nav-link(href='#').nav__el.nav__el--logout Log out
+            li.nav-item
+               a.nav-link(href='/me')= `You are logged in as ${user.name}`  

@@ -1,0 +1,23 @@
+.outerDiv {
+  /* background-color: #006699;
+  color: #fff; */
+  height: auto;
+  width: auto;
+  margin: 0px auto;
+  margin-top: 15px;
+  padding: 5px;
+}
+.leftDiv {
+  /* background-color: #efefef;
+  color: #000; */
+  height: auto;
+  width: 48%;
+  float: left;
+}
+.rightDiv {
+  /* background-color: #efefef;
+  color: #000; */
+  height: auto;
+  width: 48%;
+  float: right;
+}

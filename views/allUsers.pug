@@ -1,0 +1,20 @@
+extends base
+block content
+  table.table.table-striped.table-dark.table-hover
+      thead.thead-dark
+        tr
+          th(scope='col') Name
+          th(scope='col') Email
+          th(scope='col') Role
+          th(scope='col') Status
+          th(scope='col') Action
+      tbody
+         each user in users
+            tr
+                td= user.name
+                td= user.email
+                td= user.role
+                td= user.role
+                td
+                 button.btn.btn-secondary(type='button') Update 
+                 button.btn.btn-danger(type='button') Delete

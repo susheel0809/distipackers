@@ -6,6 +6,8 @@ dotenv.config({ path: './config.env' });
 console.log(app.get('env'));
 console.log(process.env);
 
+const PORT = process.env.PORT || 8000;
+
 mongoose
   .connect(process.env.DATABASE_LOCAL, {
     useNewUrlParser: true,
@@ -33,7 +35,7 @@ mongoose
 //   });
 
 //start server
-const port = 8000;
-app.listen(port, () => {
-  console.log(`App running on port ${port}`);
+// const port = 8000;
+app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}`);
 });

@@ -219,6 +219,26 @@ exports.restrictTo = (...role) => {
   };
 };
 
+exports.allowedTo = (...role) => {
+  return (req, res, next) => {
+    try {
+      //roles in array admin,lead-guy
+      if (!role.includes(req.user.role)) {
+        res.status(400).json({
+          status: 'fail',
+          message: 'You are not allowed to access it',
+        });
+      }
+      next();
+    } catch (err) {
+      res.status(401).json({
+        status: 'fail',
+        message: err.message,
+      });
+    }
+  };
+};
+
 exports.forgotPassword = async (req, res, next) => {
   //get the user based on posted email
   try {

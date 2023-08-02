@@ -12,7 +12,9 @@ const login = async (name, email, password, passwordConfirm) => {
     });
 
     if (res.data.status == 'Success') {
-      alert('Registered Succesfully');
+      alert(
+        'Registered Succesfully. Your registration needs to be approved we will inform you via email'
+      );
       window.setTimeout(() => {
         location.assign('/');
       }, 100);
