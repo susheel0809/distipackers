@@ -96,6 +96,27 @@ exports.warehouseThree = async (req, res) => {
   );
   cartingDataSet = data;
 
+  //carting chart
+  const cartingOptions = {
+    title: "Carting's Status",
+    vAxis: { title: 'Numbers' },
+    hAxis: { title: 'Consolidator' },
+    seriesType: 'bars',
+    series: { 6: { type: 'line' } },
+  };
+
+  // var { data } = await axios.get(
+  //   'https://script.googleusercontent.com/macros/echo?user_content_key=-O4cGL2DRNtE45mXGuRCjNSzXZDrKOGVW6KCyg9X_wYwuS1D6doNZZKkmtkdQYWN1CsY-9hPwjw_wiMZFcS6yKU2p-v7aIPSm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnHvoCcOboXKdiWu2DQ1Yyn4SfLVKf4cn2t39hvuAsXpDSBq788eMGRL8NM5nSq01M7yySfga8BbJ_TghSbWodhuuwjhMb0MiNQ&lib=MV7flkd5QHatBU_iSbV45kUqO0XQ_ydfb'
+  // );
+
+  // cartingChart = data;
+
+  // const chart = await google.visualization.ComboChart(
+  //   document.getElementById('chart_div')
+  // );
+
+  // chart.draw(cartingChart, cartingOptions);
+
   res.status(200).render('warehouseThree', {
     title: 'Warehouse Three',
     stuffingReportWarehouseThree: stuffingDataSet.data,

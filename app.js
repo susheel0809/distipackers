@@ -6,6 +6,7 @@ const userRouter = require('./routes/userRoute');
 const viewRouter = require('./routes/viewRoutes');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const GoogleChartsNode = require('google-charts-node');
 
 //it is wriiter to use middle ware
 app.use(express.json());
