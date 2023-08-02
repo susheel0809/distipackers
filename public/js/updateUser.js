@@ -1,5 +1,4 @@
 const updateUser = async (id, active) => {
-  alert(active);
   try {
     const res = await axios({
       method: 'PATCH',

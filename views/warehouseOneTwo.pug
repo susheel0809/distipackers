@@ -3,6 +3,13 @@ block content
   .outerDiv
       .leftDiv
           table.table.table-sm.table-hover
+            thead 
+              each project in stuffingProjectDetailsOne
+                tr 
+                  th
+                    a(href=`${project.url}`)= `Project Details : ${project.name}` 
+                  th= `Sheet Name : ${project.spreadsheet_name}`  
+          table.table.table-sm.table-hover
             thead
                tr.table-info
                  th(scope='col') Consolidator
@@ -39,35 +46,39 @@ block content
 
       .rightDiv
           table.table.table-sm.table-hover
+            thead 
+              each project in cartingProjectDetails
+                tr 
+                  th
+                    a(href=`${project.url}`)= `Project Details : ${project.name}` 
+                  th= `Sheet Name : ${project.spreadsheet_name}` 
+          table.table.table-sm.table-hover
             thead
                tr.table-info
                  th(scope='col') Consolidator
-                 th(scope='col') Plan Recevied
+                 th(scope='col') Arrived
+                 th(scope='col') Offloaded
                  th(scope='col') Running
-                 th(scope='col') Stuffed
                  th(scope='col') Pending
-                 th(scope='col') Tues
                  th(scope='col') Cbm
             tbody
-              each stuffing in stuffingReportWarehouseOneTwo
-                if stuffing.consolidator=='TOTAL'
+              each carting in cartingDataSetOneTwo
+                if carting.consolidator=='TOTAL'
                  tr.table-secondary
-                   td.table-success= stuffing.consolidator
-                   td= stuffing.plan_recevied
-                   td= stuffing.RUNNING  
-                   td= stuffing.STUFFED
-                   td= stuffing.PENDING
-                   td= stuffing.tues
-                   td= stuffing.cbm
+                   td.table-success= carting.consolidator
+                   td= carting.arrived
+                   td= carting.OFFLOADED  
+                   td= carting.RUNNING
+                   td= carting.PENDING
+                   td= carting.inward_cbm
                 else 
                  tr
-                   td.table-success= stuffing.consolidator
-                   td= stuffing.plan_recevied
-                   td= stuffing.RUNNING  
-                   td= stuffing.STUFFED
-                   td= stuffing.PENDING
-                   td= stuffing.tues
-                   td= stuffing.cbm
+                   td.table-success= carting.consolidator
+                   td= carting.arrived
+                   td= carting.OFFLOADED  
+                   td= carting.RUNNING
+                   td= carting.PENDING
+                   td= carting.inward_cbm
               tr 
                 td(colspan='8')
                  button.btn.btn-success.btn-lg.btn-block(type='button')
