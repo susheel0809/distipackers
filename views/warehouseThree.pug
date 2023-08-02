@@ -1,48 +1,86 @@
 extends base
 block content
-    table.table
-        thead.thead-dark
-          tr
-            th(scope='col') #
-            th(scope='col') First
-            th(scope='col') Last
-            th(scope='col') Handle
-        tbody
-          tr
-            th(scope='row') 1
-            td Mark
-            td Otto
-            td @mdo
-        tr
-          th(scope='row') 2
-          td Jacob
-          td Thornton
-          td @fat
-        tr
-          th(scope='row') 3
-          td Larry
-          td the Bird
-          td @twitter
-    table.table
-      thead.thead-light
-        tr
-          th(scope='col') #
-          th(scope='col') First
-          th(scope='col') Last
-          th(scope='col') Handle
-      tbody
-        tr
-          th(scope='row') 1
-          td Mark
-          td Otto
-          td @mdo
-        tr
-          th(scope='row') 2
-          td Jacob
-          td Thornton
-          td @fat
-        tr
-          th(scope='row') 3
-          td Larry
-          td the Bird
-          td @twitter
+    .outerDiv
+      .leftDiv
+          table.table.table-sm.table-hover
+            thead 
+              each project in stuffingProjectDetails
+                tr 
+                  th= `Project Details :${project.name}` 
+                  th= `Sheet Name : ${project.spreadsheet_name}`
+          table.table.table-sm.table-hover
+            thead
+               tr.table-info
+                 th(scope='col') Consolidator
+                 th(scope='col') Plan Recevied
+                 th(scope='col') Running
+                 th(scope='col') Stuffed
+                 th(scope='col') Pending
+                 th(scope='col') Tues
+                 th(scope='col') Cbm
+            tbody
+              each stuffing in stuffingReportWarehouseThree
+                if stuffing.consolidator=='TOTAL'
+                 tr.table-secondary
+                   td.table-success= stuffing.consolidator
+                   td= stuffing.plan_recevied
+                   td= stuffing.RUNNING  
+                   td= stuffing.STUFFED
+                   td= stuffing.PENDING
+                   td= stuffing.tues
+                   td= stuffing.cbm
+                else 
+                 tr
+                   td.table-success= stuffing.consolidator
+                   td= stuffing.plan_recevied
+                   td= stuffing.RUNNING  
+                   td= stuffing.STUFFED
+                   td= stuffing.PENDING
+                   td= stuffing.tues
+                   td= stuffing.cbm
+              tr 
+                td(colspan='8')
+                 button.btn.btn-success.btn-lg.btn-block(type='button')
+                  img(src='/img/download.svg', alt='excel', width='30px', height='25px')
+
+      .rightDiv
+          table.table.table-sm.table-hover
+            thead 
+              tr 
+                th Project Details : Warehouse Three Carting Report
+                th Sheet Name : June/2023
+          table.table.table-sm.table-hover
+            thead
+               tr.table-info
+                 th(scope='col') Consolidator
+                 th(scope='col') Plan Recevied
+                 th(scope='col') Running
+                 th(scope='col') Stuffed
+                 th(scope='col') Pending
+                 th(scope='col') Tues
+                 th(scope='col') Cbm
+            tbody
+              each stuffing in stuffingReportWarehouseThree
+                if stuffing.consolidator=='TOTAL'
+                 tr.table-secondary
+                   td.table-success= stuffing.consolidator
+                   td= stuffing.plan_recevied
+                   td= stuffing.RUNNING  
+                   td= stuffing.STUFFED
+                   td= stuffing.PENDING
+                   td= stuffing.tues
+                   td= stuffing.cbm
+                else 
+                 tr
+                   td.table-success= stuffing.consolidator
+                   td= stuffing.plan_recevied
+                   td= stuffing.RUNNING  
+                   td= stuffing.STUFFED
+                   td= stuffing.PENDING
+                   td= stuffing.tues
+                   td= stuffing.cbm
+              tr 
+                td(colspan='8')
+                 button.btn.btn-success.btn-lg.btn-block(type='button')
+                  img(src='/img/download.svg', alt='excel', width='30px', height='25px')
+      
