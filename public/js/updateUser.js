@@ -21,11 +21,25 @@ const updateUser = async (id, active) => {
   }
 };
 
-document.querySelector('.form').addEventListener('submit', (e) => {
-  //   confirm('Do you want to update the user');
-  e.preventDefault();
+// document.querySelector('.form').ad (e) => {
+//   //   confirm('Do you want to update the user');
+//   e.preventDefault();
 
-  const id = document.getElementById('id').value;
-  const active = document.getElementById('active').value;
-  updateUser(id, active);
-});
+//   const id = document.getElementById('id').value;
+//   const active = document.getElementById('active').value;
+//   updateUser(id, active);
+// });
+
+function updateActive(id, active) {
+  if (active) {
+    const result = confirm('Are you sure you want to activate the user');
+    if (result) {
+      updateUser(id, active);
+    }
+  } else {
+    const result = confirm('Are you sure you want to De Activate the user');
+    if (result) {
+      updateUser(id, active);
+    }
+  }
+}

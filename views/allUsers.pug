@@ -1,6 +1,7 @@
 extends base
 block content
-  table.table.table-sm.table-hover
+  .users 
+    table.table.table-sm.table-hover
       thead.thead-dark
         tr
           th(scope='col') Name
@@ -11,24 +12,21 @@ block content
       tbody
          each user in users
             tr
-                td= user.name
-                td= user.email
-                td= user.role
-                if user.active 
-                  td Active
-                else
-                  td In Active
-                td
-                  if user.active
-                    form.form
-                      input#id.form_input(type='hidden',value=`${user._id}`)
-                      input#active.form_input(type='hidden',value='false')
-                      button.btn.btn-danger(type='submit') Mark Inactive
-                  else 
-                    form.form 
-                      input#id.form_input(type='hidden',value=`${user._id}`)
-                      input#active.form_input(type='hidden',value='true')
-                      button.btn.btn-success(type='submit') Mark As Active
-                 
-                    
-                
+              td= user.name
+              td= user.email
+              td= user.role
+              if user.active 
+                td Active
+              else
+                td In Active
+              td
+                if user.active
+                  label.toggle
+                    input.toggle-checkbox(type='checkbox', checked=true, onClick="updateActive('"+user._id+"',false)")
+                    .toggle-switch
+                    span.toggle-label 
+                else 
+                  label.toggle
+                    input.toggle-checkbox(type='checkbox', checked=false , onClick="updateActive('"+user._id+"',true)")
+                    .toggle-switch
+                    span.toggle-label 
