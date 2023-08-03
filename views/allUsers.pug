@@ -12,7 +12,7 @@ block content
       tbody
          each user in users
             tr
-              td.bg-info= user.name
+              td.bg-info.text-capitalize= user.name
               td.bg-info= user.email
               td.bg-info.text-capitalize= user.role
               if user.active 
