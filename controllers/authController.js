@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const { token } = require('morgan');
 const { promisify } = require('util');
 const { decode } = require('punycode');
+const sendEmail = require('./../utils/email');
 
 exports.signup = async (req, res, next) => {
   try {
@@ -19,6 +20,20 @@ exports.signup = async (req, res, next) => {
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
+
+    try {
+      console.log('mail send start');
+      const message = `Hi ${newUser.name} registered as a user for your Dashboard application. Please review and approve or decline`;
+      await sendEmail({
+        email: 'kumarsusheel1997@gmail.com',
+        subject: `New Registration for ${newUser.name}`,
+        message,
+      });
+    } catch (err) {
+      res.status(405).json({
+        message: err,
+      });
+    }
 
     res.status(201).json({
       status: 'Success',

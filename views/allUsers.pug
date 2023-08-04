@@ -12,13 +12,13 @@ block content
       tbody
          each user in users
             tr
-              td.bg-info.text-capitalize= user.name
+              td.bg-info.bg-gradient.text-capitalize= user.name
               td.bg-info= user.email
               td.bg-info.text-capitalize= user.role
               if user.active 
                 td.bg-dark.text-success.font-weight-bold Enabled
               else
-                td.bg-dark.text-info.font-weight-bold Disabled
+                td.bg-dark.text-danger.font-weight-bold Disabled
               td
                 if user.active
                   label.toggle

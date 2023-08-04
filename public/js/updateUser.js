@@ -9,7 +9,6 @@ const updateUser = async (id, active) => {
     });
 
     if (res.data.status == 'success') {
-      alert('User Updated');
       window.setTimeout(() => {
         location.assign('/users');
       }, 100);
