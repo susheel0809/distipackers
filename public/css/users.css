@@ -12,6 +12,20 @@
   text-align: center;
 }
 
+.analytics {
+  padding: 40px;
+}
+
+.analytics .td {
+  /* padding-left: 15px; */
+  vertical-align: middle;
+}
+
+.analytics .table {
+  box-shadow: 0px 0px 10px #e7e7e7;
+  text-align: center;
+}
+
 CSSResult Skip Results Iframe EDIT ON *,
 *:before,
 *:after {

@@ -4,7 +4,7 @@ const router = express.Router();
 const authController = require('./../controllers/authController');
 
 router.get('/', viewController.setLogin);
-router.get('/home', authController.isLoggedIn, viewController.myHome);
+// router.get('/home', authController.isLoggedIn, viewController.myHome);
 router.get(
   '/warehouse-one-two',
   authController.isLoggedIn,
@@ -29,4 +29,5 @@ router.get(
   viewController.getAccount
 );
 router.get('/signup', viewController.signUp);
+router.get('/report-one-carting', viewController.generateReport);
 module.exports = router;

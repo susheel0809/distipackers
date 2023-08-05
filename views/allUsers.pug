@@ -1,10 +1,18 @@
 extends base
 block content
+  .analytics 
+    table.table.table-bordered
+      thead
+        tr
+          th.bg-success.text-white= `Total ${total}` 
+          th.bg-success.text-white= `Active ${total_active}`
+          th.bg-success.text-white= `In Active ${total_in_active}`
+          //- th.bg-success.text-white Awating confirmation
   .users 
     table.table.table-sm.table-hover
       thead.thead-dark
         tr
-          th(scope='col') Name
+          th(scope='col') Name 
           th(scope='col') Email
           th(scope='col') Role
           th(scope='col') Status
@@ -12,7 +20,7 @@ block content
       tbody
          each user in users
             tr
-              td.bg-info.bg-gradient.text-capitalize= user.name
+              td.button(data-bs-toggle='modal', data-bs-target='#exampleModal').bg-info.bg-gradient.text-capitalize= user.name
               td.bg-info= user.email
               td.bg-info.text-capitalize= user.role
               if user.active 
@@ -30,3 +38,14 @@ block content
                     input.toggle-checkbox(type='checkbox', checked=false , onClick="updateActive('"+user._id+"',true)")
                     .toggle-switch
                     span.toggle-label 
+  #exampleModal.modal.fade(tabindex='-1', aria-labelledby='exampleModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            h5#exampleModalLabel.modal-title Modal title
+            button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
+          .modal-body
+            | ...
+          .modal-footer
+            button.btn.btn-secondary(type='button', data-bs-dismiss='modal') Close
+            button.btn.btn-primary(type='button') Save changes
