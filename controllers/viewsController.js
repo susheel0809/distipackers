@@ -19,7 +19,7 @@ exports.getAccount = (req, res) => {
 exports.warehouseOneTwo = async (req, res) => {
   //stuffing data set
   const stuf_url = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=Pz44KbLeK9X4gULuE9Y7tfZufEtQDvWKd_R12bbzA8i6MJEtDzyq3tQq-JZBLWnQOPSyQo0JGaMNJvZmjTDSNLw8H25QnHc1m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKooo5oL873M3V2n_1SHPDX62VuZkHacpZ2U4r5G3_r6Ou16oFv0T08VxJmRJpXbS8eXWXXa1LLnCW41D3qU3DKQy6gW-_Rpeg&lib=MW8rkVqNzYSQZl_gZuXusDUqO0XQ_ydfb'
+    'https://script.googleusercontent.com/macros/echo?user_content_key=a-egOCZPeCtvI9wkQIdqErJ9xyEzIYChfcE9gXDVHx0dyXNkSYg5J6wYxsgNTatI5i4727RiosCssWh_yHFowc9kcSacnBP-m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKtqdu1DjehCO21enFFo77oQOGCgW60nTxWhBDMBMnkQJhSDzWMc82GA7pnh-twY6ryk_TwFpw0BrJU8HpRUu2R0cbD2OFhOJw&lib=MW8rkVqNzYSQZl_gZuXusDUqO0XQ_ydfb'
   );
 
   //stuffing project details
@@ -39,12 +39,12 @@ exports.warehouseOneTwo = async (req, res) => {
 
   //stuffing combo chart
   const chart_s_url = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=432td08gsaEDBj37WeUSr6iKMu-ViHwC8IAoxqmf3C-2VBWdArQjXIOABMubzXhjcBk8n0Qpe5JrGMmpe4AkA_j4w-DebGxRm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnMN93c-FN_XooqcxF2EUwKY6aU2bRCH9v-hUsc-pYb35_nmrkzZEEgtIeapqw7Ja3gDMXOl1ZnLZHcdgg3dOcG7rOGOsczW6Hw&lib=MW8rkVqNzYSQZl_gZuXusDUqO0XQ_ydfb'
+    'https://script.googleusercontent.com/macros/echo?user_content_key=rZgZxqJ9yWM8JaQzIIZrZ0CTMKhZeUlYSRNcNaYl9UwO5SR_9YZrALuXu7ofRAfZdxD-YFKZBGvIKfx2Y7NFatPjn1EHw5dqm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJhwRyY_ZR_zI5FUDcDpI6prvkrm7GsWDWc2N6d4KWxakDkqM_-7SAGiKZSADfTSHiGeMMWo6JP_5RB3SDeYJEjn_l8kTkcQzg&lib=MW8rkVqNzYSQZl_gZuXusDUqO0XQ_ydfb'
   );
 
   //carting combo chart
   const carting_chart_url = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=KC9OvqRrMkvFdqqwBfCQNUUtKauri_FuwO0ZUrOlpTJwz9cbB792trYGXaEJfQ3zF5yb2um18GkG3zHS-3vGTTqT1BQFqj9Gm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNcZmafphYrtE1CPDFA0E78CkBUnU11qntE35IAOrh-pzOvfb5uthVr0PNUJZqy8hLjU8aXCS5fdXT84p6Jm2nPn4Lh3MxHD3Nz9Jw9Md8uu&lib=MIAm_Kgor3BeFH3Gjej52bzWkEKQozq2-'
+    'https://script.googleusercontent.com/macros/echo?user_content_key=_Cq3j0YgUZyBUXk7NWwekmGUdR6F2hg2Svn2U5ZlKzxNYccwp1egZQLn5GC837Dhil_kgKFMJnpU0Yibx6tKMWFJqGLhqMgWm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPXve1yOI7-V3lOmSMucJR-7U4wHepKsIUOJM5Zy-XwqGS_yAfv2rMA9_tH0NYerpI5ZcGTiYQtqwDPM6Ew1cDMqVEfK_CWZT9z9Jw9Md8uu&lib=MIAm_Kgor3BeFH3Gjej52bzWkEKQozq2-'
   );
   axios
     .all([
