@@ -16,35 +16,60 @@ exports.getAccount = (req, res) => {
   });
 };
 
-console.log('@ for 1');
-
 exports.warehouseOneTwo = async (req, res) => {
+  //stuffing data set
   const stuf_url = axios.get(
     'https://script.googleusercontent.com/macros/echo?user_content_key=Pz44KbLeK9X4gULuE9Y7tfZufEtQDvWKd_R12bbzA8i6MJEtDzyq3tQq-JZBLWnQOPSyQo0JGaMNJvZmjTDSNLw8H25QnHc1m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKooo5oL873M3V2n_1SHPDX62VuZkHacpZ2U4r5G3_r6Ou16oFv0T08VxJmRJpXbS8eXWXXa1LLnCW41D3qU3DKQy6gW-_Rpeg&lib=MW8rkVqNzYSQZl_gZuXusDUqO0XQ_ydfb'
   );
+
+  //stuffing project details
   const stf_pr_url = axios.get(
     'https://script.google.com/macros/s/AKfycbwO1rAWoKTGpFoQ3iTuMRuuGLtGls69X2gqgUOhON-vPnUH8oNfqS1m5P3ddAErRxb4/exec'
   );
 
+  //carting project details
   const carting_pr_url = axios.get(
     'https://script.googleusercontent.com/macros/echo?user_content_key=9ps-rtEIShoLUMcDC1oifcwNfMoSzAu2ZxCNMJk71sLC5uKAdD9OhF9vz0fj7X-opkW6Fv1MfibUjDfl1JoA_rC_c-XPB7bDm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnH0sfn7Co64_k9yoaRKhcZzK2dJ1SJ4mXqhcmgJlxP-27B3glFl51R9rqkFYD5r99xRHaSOVQvfO4kQZmuTEmRyX70tbOYaRIdz9Jw9Md8uu&lib=MIAm_Kgor3BeFH3Gjej52bzWkEKQozq2-'
   );
+
+  // carting data set
   const carting_data_set = axios.get(
     'https://script.googleusercontent.com/macros/echo?user_content_key=ao-QYwwq4N4affaXYw_nj8N8yYslm6JM8FAucAhmAqsX3sYkDx0LzYwLQmZO21POzlpDBSX7Xh8bnp_C--XrurPznBCbbYEdm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnCupv9ZraWSw0NL9mtvGNfIq4PB0JIeLcCkG1lM_XVeZe5Vmoew7m9C9d-ASkKw0__PVHCrdnglMKKAmZg64u8kqHgwmXBBXWtz9Jw9Md8uu&lib=MIAm_Kgor3BeFH3Gjej52bzWkEKQozq2-'
   );
+
+  //stuffing combo chart
+  const chart_s_url = axios.get(
+    'https://script.googleusercontent.com/macros/echo?user_content_key=432td08gsaEDBj37WeUSr6iKMu-ViHwC8IAoxqmf3C-2VBWdArQjXIOABMubzXhjcBk8n0Qpe5JrGMmpe4AkA_j4w-DebGxRm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnMN93c-FN_XooqcxF2EUwKY6aU2bRCH9v-hUsc-pYb35_nmrkzZEEgtIeapqw7Ja3gDMXOl1ZnLZHcdgg3dOcG7rOGOsczW6Hw&lib=MW8rkVqNzYSQZl_gZuXusDUqO0XQ_ydfb'
+  );
+
+  //carting combo chart
+  const carting_chart_url = axios.get(
+    'https://script.googleusercontent.com/macros/echo?user_content_key=KC9OvqRrMkvFdqqwBfCQNUUtKauri_FuwO0ZUrOlpTJwz9cbB792trYGXaEJfQ3zF5yb2um18GkG3zHS-3vGTTqT1BQFqj9Gm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNcZmafphYrtE1CPDFA0E78CkBUnU11qntE35IAOrh-pzOvfb5uthVr0PNUJZqy8hLjU8aXCS5fdXT84p6Jm2nPn4Lh3MxHD3Nz9Jw9Md8uu&lib=MIAm_Kgor3BeFH3Gjej52bzWkEKQozq2-'
+  );
   axios
-    .all([stuf_url, stf_pr_url, carting_pr_url, carting_data_set])
+    .all([
+      stuf_url,
+      stf_pr_url,
+      carting_pr_url,
+      carting_data_set,
+      chart_s_url,
+      carting_chart_url,
+    ])
     .then(function (data) {
       const one_two_data_set = data[0];
       const stuff_pr = data[1];
       const projectDetails = data[2];
       const cartingDataSet = data[3];
+      const stuff_chart = data[4];
+      const carting_chart = data[5];
 
       res.render('warehouseOneTwo', {
         stuffingReportWarehouseOneTwo: one_two_data_set.data.data,
         stuffingProjectDetailsOne: stuff_pr.data.data,
         cartingProjectDetails: projectDetails.data.data,
         cartingDataSetOneTwo: cartingDataSet.data.data,
+        stuffingChartOneTwo: JSON.stringify(stuff_chart.data.data),
+        cartingChartOneTwo: JSON.stringify(carting_chart.data.data),
         title: 'Warehouse 1-2 Report',
       });
     });
@@ -63,14 +88,30 @@ exports.warehouseThree = async (req, res) => {
   const carting_url = axios.get(
     'https://script.googleusercontent.com/macros/echo?user_content_key=pDLlNOUXhZ3B5LGUktwDl5GRQeTDovldWgDUGtgrHQWyMTvVYvRnwYHEEILtWLxx1htg16gEZrNXqC-tJ4Bh_s9DM4Jjt68mm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnLLTKCXIto1-n2ORA-Vh8tDxRwn3s50_VYDqdgyENjdoax8wR5IIBzu3wA0N5a33KVzrwi6YKv8IYCMqZjoYeGPTowz9C9rokA&lib=MV7flkd5QHatBU_iSbV45kUqO0XQ_ydfb'
   );
+  const stuff_chart_url = axios.get(
+    'https://script.googleusercontent.com/macros/echo?user_content_key=xeM3rOZvYfajjNTz_WfcBcM5_uWDJf3NQulD2j7XOl2cKhgp1-qM6JwtRZr-ktIE9sYely8JQttbjkg6PeiFUDJIbsJF-S58m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnL2AT9By8fF5Dkb6OdPOVvMcWZPl1DNIFS6k6l42J7HwpzFNRxC4xQD0yrrGDR9-yUv4gUcOsRySJnyCItLTmcYYGecESd1aB9z9Jw9Md8uu&lib=MzFsmOfzUWvArIz4A7cM7CTWkEKQozq2-'
+  );
 
+  const carting_chart_url = axios.get(
+    'https://script.googleusercontent.com/macros/echo?user_content_key=-O4cGL2DRNtE45mXGuRCjNSzXZDrKOGVW6KCyg9X_wYwuS1D6doNZZKkmtkdQYWN1CsY-9hPwjw_wiMZFcS6yKU2p-v7aIPSm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnHvoCcOboXKdiWu2DQ1Yyn4SfLVKf4cn2t39hvuAsXpDSBq788eMGRL8NM5nSq01M7yySfga8BbJ_TghSbWodhuuwjhMb0MiNQ&lib=MV7flkd5QHatBU_iSbV45kUqO0XQ_ydfb'
+  );
   axios
-    .all([stuff_url, stuff_pr_url, carting_pr_url, carting_url])
+    .all([
+      stuff_url,
+      stuff_pr_url,
+      carting_pr_url,
+      carting_url,
+      stuff_chart_url,
+      carting_chart_url,
+    ])
     .then(function (data) {
       const stuffingDataSet = data[0];
       const projectDetails = data[1];
       const cartingProject = data[2];
       const cartingDataSet = data[3];
+      const stuff_chart = data[4];
+      const carting_chart = data[5];
+      console.log(stuff_chart.data + 'data chart ');
 
       res.status(200).render('warehouseThree', {
         title: 'Warehouse Three',
@@ -78,6 +119,8 @@ exports.warehouseThree = async (req, res) => {
         stuffingProjectDetails: projectDetails.data.data,
         cartingProjectDetails: cartingProject.data.data,
         cartingDataSetThree: cartingDataSet.data.data,
+        stuffingChartThree: JSON.stringify(stuff_chart.data.data),
+        cartingChartThree: JSON.stringify(carting_chart.data.data),
       });
     });
 };
