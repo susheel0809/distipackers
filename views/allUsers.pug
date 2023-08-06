@@ -17,6 +17,7 @@ block content
           th(scope='col') Role
           th(scope='col') Status
           th(scope='col') Action
+          th(scope='col') Delete
       tbody
          each user in users
             tr
@@ -32,12 +33,14 @@ block content
                   label.toggle
                     input.toggle-checkbox(type='checkbox', checked=true, onClick="updateActive('"+user._id+"',false)")
                     .toggle-switch
-                    span.toggle-label 
+                    span.toggle-label
                 else 
                   label.toggle
                     input.toggle-checkbox(type='checkbox', checked=false , onClick="updateActive('"+user._id+"',true)")
                     .toggle-switch
-                    span.toggle-label 
+                    span.toggle-label
+              td.text-danger
+                img(src='/img/red-trash-can-icon.svg', alt='logo', width='70px', height='40px' onClick="delteeUserById('"+user._id+"')")
   #exampleModal.modal.fade(tabindex='-1', aria-labelledby='exampleModalLabel', aria-hidden='true')
       .modal-dialog
         .modal-content
