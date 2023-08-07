@@ -34,7 +34,7 @@ exports.warehouseOneTwo = async (req, res) => {
 
   // carting data set
   const carting_data_set = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=ao-QYwwq4N4affaXYw_nj8N8yYslm6JM8FAucAhmAqsX3sYkDx0LzYwLQmZO21POzlpDBSX7Xh8bnp_C--XrurPznBCbbYEdm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnCupv9ZraWSw0NL9mtvGNfIq4PB0JIeLcCkG1lM_XVeZe5Vmoew7m9C9d-ASkKw0__PVHCrdnglMKKAmZg64u8kqHgwmXBBXWtz9Jw9Md8uu&lib=MIAm_Kgor3BeFH3Gjej52bzWkEKQozq2-'
+    'https://script.googleusercontent.com/macros/echo?user_content_key=OuhFruR-wGMqQpyNaekYCkOtdf5j2Z8oOSK4mT0yqbkFmRlzThToCzipq19LMaCE8Io8FXbmy0dNbx8-C8oLkcDbIlucTFlWm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnEYifV1R3qAM2QoJuPEgC6csafXatiL2tzoYe858tN9fBhpU_jXwZi850tKxnEefgMOc3ZO_UPEGNOU8vwVlUOex90-N9aL0A9z9Jw9Md8uu&lib=MIAm_Kgor3BeFH3Gjej52bzWkEKQozq2-'
   );
 
   //stuffing combo chart
@@ -76,6 +76,7 @@ exports.warehouseOneTwo = async (req, res) => {
 };
 
 exports.warehouseThree = async (req, res) => {
+  // res.
   const stuff_url = axios.get(
     'https://script.googleusercontent.com/macros/echo?user_content_key=qAfwgfrHfVlvuOcPtbDDJbjx_YYvaPttyZNYCHSahdjSQczRr2qFgDFj86n2JHjhS_2-UwyflFRRhuciLTLo-lFIQ3LPZCFPm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnGRBB_UEiI4Dln0fnBFqm76EnHOce_ZDP3yX8Dv7nU_2DVd4Ficzn8kbzh-ikD2p_vQNL2VYtVD5-0TKUMjmvFUmCMgUb9Pau9z9Jw9Md8uu&lib=MzFsmOfzUWvArIz4A7cM7CTWkEKQozq2-'
   );
@@ -189,4 +190,10 @@ exports.generateReport = async (req, res) => {
   //   });
   // });
   workbook.xlsx.write(res);
+};
+
+exports.getLoader = (req, res) => {
+  res.status(200).render('loader', {
+    title: 'loader',
+  });
 };

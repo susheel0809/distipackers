@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
-// const rateLimiting = require('express-rate-limit');
-// const helmet = require('helmet');
-// const mongoSanitize = require('express-mongo-sanitize');
-// const xss = require('xss-clean');
+const rateLimiting = require('express-rate-limit');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
 const path = require('path');
 const morgan = require('morgan');
 const userRouter = require('./routes/userRoute');
@@ -12,20 +12,20 @@ const cookieParser = require('cookie-parser');
 const compression = require('compression');
 // const GoogleChartsNode = require('google-charts-node');
 
-// const limiter = rateLimiting({
-//   max: 100,
-//   windowMS: 60 * 60 * 1000,
-//   message: {
-//     status: 'fail',
-//     message: 'To many request from this ip, please try again in hour',
-//   },
-// });
+const limiter = rateLimiting({
+  max: 100,
+  windowMS: 60 * 60 * 1000,
+  message: {
+    status: 'fail',
+    message: 'To many request from this ip, please try again in hour',
+  },
+});
 // app.use(helmet());
-// app.use('/api', limiter);
+app.use('/api', limiter);
 //data sanitization against NoSql query injection
-// app.use(mongoSanitize());
+app.use(mongoSanitize());
 //data sanitization against xss
-// app.use(xss());
+app.use(xss());
 //it is wriiter to use middle ware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));

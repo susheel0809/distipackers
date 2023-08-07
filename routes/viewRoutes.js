@@ -30,4 +30,5 @@ router.get(
 );
 router.get('/signup', viewController.signUp);
 router.get('/report-one-carting', viewController.generateReport);
+router.get('/loader', authController.isLoggedIn, viewController.getLoader);
 module.exports = router;
