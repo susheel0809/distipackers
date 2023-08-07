@@ -301,3 +301,7 @@ exports.allowedTo = (...role) => {
 //     });
 //   }
 // };
+
+// exports.resetPassword=async(req,res,next)=>{
+
+// }
