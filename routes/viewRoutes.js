@@ -11,7 +11,7 @@ router.get(
   viewController.warehouseOneTwo
 );
 router.get(
-  '/warehouse_three',
+  '/warehouse_three/:start_date/:end_date',
   authController.isLoggedIn,
   viewController.warehouseThree
 );

@@ -20,8 +20,8 @@ exports.warehouseOneTwo = async (req, res) => {
   const start_date = req.params.start_date;
   const end_date = req.params.end_date;
 
-  console.log(start_date, ' start date');
-  console.log(end_date, ' end date');
+  // console.log(start_date, ' start date');
+  // console.log(end_date, ' end date');
 
   //stuffing data set
   const stuf_url = axios.get(
@@ -84,8 +84,12 @@ exports.warehouseOneTwo = async (req, res) => {
 };
 
 exports.warehouseThree = async (req, res) => {
+  const start_date = req.params.start_date;
+  const end_date = req.params.end_date;
+
+  //stuffing data set
   const stuff_url = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=qAfwgfrHfVlvuOcPtbDDJbjx_YYvaPttyZNYCHSahdjSQczRr2qFgDFj86n2JHjhS_2-UwyflFRRhuciLTLo-lFIQ3LPZCFPm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnGRBB_UEiI4Dln0fnBFqm76EnHOce_ZDP3yX8Dv7nU_2DVd4Ficzn8kbzh-ikD2p_vQNL2VYtVD5-0TKUMjmvFUmCMgUb9Pau9z9Jw9Md8uu&lib=MzFsmOfzUWvArIz4A7cM7CTWkEKQozq2-'
+    `https://script.google.com/macros/s/AKfycbwNhSud2iE9-aL-SownkMO6gdZKHdi0bFYPBBRhiHOwtuSjIttxaoXnIouKudcDdfCmpg/exec?start_date=${start_date}&end_date=${end_date}`
   );
   const stuff_pr_url = axios.get(
     'https://script.googleusercontent.com/macros/echo?user_content_key=YBiD6qDyLRHAN9qQi_kZeeU7r9cfXRADeuD3MrrpM8RlTU-VWIE4IwbaMkrHv78Na9dhjkI8w2K0bRV_29YQ96YduIp9AQHfm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnIys2KwcMpvaW1tDvxIDU5F8xRVvIfvMwKcwpEbkxgqj-U4Tcik2RkCPsWSu1XxTnpEky7NMoliHTARZMXhJX7asnhEVI65Uc9z9Jw9Md8uu&lib=MzFsmOfzUWvArIz4A7cM7CTWkEKQozq2-'
@@ -94,14 +98,14 @@ exports.warehouseThree = async (req, res) => {
     'https://script.googleusercontent.com/macros/echo?user_content_key=lS0nz0j7yGT5BJiBhTqKZX43lNAZltOh-iPDQde5cCRAuYBnRrkYR0g5KwWDjJOvyN4wvBrC3BzTJicjIZkbmhWSOBBq6E0Mm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnHBjMRiu73KiM0Ck-sqoKJZEBlMK3RlrcQ80zj0ePngtk-K7bJeMBmwLVql_gzH8j75cApUyhvDfYUk6Lgxr2r9zkLsfhVDiVQ&lib=MV7flkd5QHatBU_iSbV45kUqO0XQ_ydfb'
   );
   const carting_url = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=pDLlNOUXhZ3B5LGUktwDl5GRQeTDovldWgDUGtgrHQWyMTvVYvRnwYHEEILtWLxx1htg16gEZrNXqC-tJ4Bh_s9DM4Jjt68mm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnLLTKCXIto1-n2ORA-Vh8tDxRwn3s50_VYDqdgyENjdoax8wR5IIBzu3wA0N5a33KVzrwi6YKv8IYCMqZjoYeGPTowz9C9rokA&lib=MV7flkd5QHatBU_iSbV45kUqO0XQ_ydfb'
+    `https://script.google.com/macros/s/AKfycbx09idfdoueiKlUhoqpT8ZzdNfsYtqdfv2qSIQJZoSXO500LjjGi0KFnV4Heo_UJv4d/exec?start_date=${start_date}&end_date=${end_date}`
   );
   const stuff_chart_url = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=xeM3rOZvYfajjNTz_WfcBcM5_uWDJf3NQulD2j7XOl2cKhgp1-qM6JwtRZr-ktIE9sYely8JQttbjkg6PeiFUDJIbsJF-S58m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnL2AT9By8fF5Dkb6OdPOVvMcWZPl1DNIFS6k6l42J7HwpzFNRxC4xQD0yrrGDR9-yUv4gUcOsRySJnyCItLTmcYYGecESd1aB9z9Jw9Md8uu&lib=MzFsmOfzUWvArIz4A7cM7CTWkEKQozq2-'
+    `https://script.google.com/macros/s/AKfycbzp6clHsiJ_0Y6X8G13t1uqKhSwmnANt0I_V6ThVNI7kEK_Z2zPtc4Mo_pZew7UFgIHVg/exec?start_date=${start_date}&end_date=${end_date}`
   );
 
   const carting_chart_url = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=-O4cGL2DRNtE45mXGuRCjNSzXZDrKOGVW6KCyg9X_wYwuS1D6doNZZKkmtkdQYWN1CsY-9hPwjw_wiMZFcS6yKU2p-v7aIPSm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnHvoCcOboXKdiWu2DQ1Yyn4SfLVKf4cn2t39hvuAsXpDSBq788eMGRL8NM5nSq01M7yySfga8BbJ_TghSbWodhuuwjhMb0MiNQ&lib=MV7flkd5QHatBU_iSbV45kUqO0XQ_ydfb'
+    `https://script.google.com/macros/s/AKfycbyM_goQc1MMWK87-VlXFeI1zIBt4F9GqJsfIDjr8y8XX38oEiyXrJF2V8g5ji3mxk_P/exec?start_date=${start_date}&end_date=${end_date}`
   );
   axios
     .all([
@@ -119,7 +123,7 @@ exports.warehouseThree = async (req, res) => {
       const cartingDataSet = data[3];
       const stuff_chart = data[4];
       const carting_chart = data[5];
-      console.log(stuff_chart.data + 'data chart ');
+      // console.log(stuff_chart.data.data + 'data chart ');
 
       res.status(200).render('warehouseThree', {
         title: 'Warehouse Three',
