@@ -15,7 +15,14 @@ html
             title Gateway | #{title}
 
     body
-    include _header   
+    include _header
+    .date_filter(style='text-align: center; padding-top:10px;')
+      form.filterForm
+        label(for='start') Start Date
+          input#start(type='date')
+        label(for='end' style='margin-left:10px') End Date 
+          input#end(type='date')
+          button.btn.btn-primary.btn-sm(type='submit' style='margin-left:10px;') Filter Data
     .outerDiv
         .leftDiv
             table.table.table-sm.table-hover
@@ -33,6 +40,7 @@ html
                   th(scope='col') Running
                   th(scope='col') Stuffed
                   th(scope='col') Pending
+                  th(scope='col') Safety
                   th(scope='col') Tues
                   th(scope='col') Cbm
               tbody
@@ -44,6 +52,7 @@ html
                       td= stuffing.RUNNING  
                       td= stuffing.STUFFED
                       td= stuffing.PENDING
+                      td= stuffing.SAFETY
                       td= stuffing.tues
                       td= stuffing.cbm
                   else 
@@ -53,6 +62,7 @@ html
                       td= stuffing.RUNNING  
                       td= stuffing.STUFFED
                       td= stuffing.PENDING
+                      td= stuffing.SAFETY
                       td= stuffing.tues
                       td= stuffing.cbm
                 tr 
@@ -104,6 +114,7 @@ html
             #carting_div(style='height: 500px;')
 
     script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js')
+    script(src='/js/warehouse12filter.js')
     script(src='/js/login.js')
     script(src='/js/logout.js')
     script(src='/js/updateUser.js')
@@ -126,7 +137,7 @@ html
             vAxis: {title: 'Range'},
             hAxis: {title: 'Consolidator'},
             seriesType: 'bars',
-            series: {6: {type: 'line'}}
+            series: {7: {type: 'line'}}
           };
           let chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
           chart.draw(data, options);

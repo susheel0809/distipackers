@@ -6,7 +6,7 @@ const authController = require('./../controllers/authController');
 router.get('/', viewController.setLogin);
 // router.get('/home', authController.isLoggedIn, viewController.myHome);
 router.get(
-  '/warehouse-one-two',
+  '/warehouse-one-two/:start_date/:end_date',
   authController.isLoggedIn,
   viewController.warehouseOneTwo
 );

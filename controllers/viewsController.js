@@ -1,8 +1,8 @@
 const { default: axios } = require('axios');
 const User = require('../models/userModel');
 const exceljs = require('exceljs');
-const supergent = require('superagent');
-const { Route } = require('express');
+// const { Route } = require('express');
+const sendEmail = require('./../utils/email');
 
 exports.setLogin = (req, res) => {
   res.status(200).render('login', {
@@ -17,9 +17,15 @@ exports.getAccount = (req, res) => {
 };
 
 exports.warehouseOneTwo = async (req, res) => {
+  const start_date = req.params.start_date;
+  const end_date = req.params.end_date;
+
+  console.log(start_date, ' start date');
+  console.log(end_date, ' end date');
+
   //stuffing data set
   const stuf_url = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=a-egOCZPeCtvI9wkQIdqErJ9xyEzIYChfcE9gXDVHx0dyXNkSYg5J6wYxsgNTatI5i4727RiosCssWh_yHFowc9kcSacnBP-m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnKtqdu1DjehCO21enFFo77oQOGCgW60nTxWhBDMBMnkQJhSDzWMc82GA7pnh-twY6ryk_TwFpw0BrJU8HpRUu2R0cbD2OFhOJw&lib=MW8rkVqNzYSQZl_gZuXusDUqO0XQ_ydfb'
+    `https://script.google.com/macros/s/AKfycbx30t5HxE1OP6y-r4dbqdXlekSxfuawnJxeLE0zbQwCncq1Vm_fqVXMLI0gMpDDIF2p/exec?start_date=${start_date}&end_date=${end_date}`
   );
 
   //stuffing project details
@@ -34,17 +40,17 @@ exports.warehouseOneTwo = async (req, res) => {
 
   // carting data set
   const carting_data_set = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=OuhFruR-wGMqQpyNaekYCkOtdf5j2Z8oOSK4mT0yqbkFmRlzThToCzipq19LMaCE8Io8FXbmy0dNbx8-C8oLkcDbIlucTFlWm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnEYifV1R3qAM2QoJuPEgC6csafXatiL2tzoYe858tN9fBhpU_jXwZi850tKxnEefgMOc3ZO_UPEGNOU8vwVlUOex90-N9aL0A9z9Jw9Md8uu&lib=MIAm_Kgor3BeFH3Gjej52bzWkEKQozq2-'
+    `https://script.google.com/macros/s/AKfycby7xloBRXBCakpg1UHrbgMlaxyttd-duYdiqk2fyEOcijlv3xD0Usp0s2bQE9ql_eQ_uQ/exec?start_date=${start_date}&end_date=${end_date}`
   );
 
   //stuffing combo chart
   const chart_s_url = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=rZgZxqJ9yWM8JaQzIIZrZ0CTMKhZeUlYSRNcNaYl9UwO5SR_9YZrALuXu7ofRAfZdxD-YFKZBGvIKfx2Y7NFatPjn1EHw5dqm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnJhwRyY_ZR_zI5FUDcDpI6prvkrm7GsWDWc2N6d4KWxakDkqM_-7SAGiKZSADfTSHiGeMMWo6JP_5RB3SDeYJEjn_l8kTkcQzg&lib=MW8rkVqNzYSQZl_gZuXusDUqO0XQ_ydfb'
+    `https://script.google.com/macros/s/AKfycbyXS9cGbuEccBWN7bC3G8DEmxUINarqwJofaB2iPfe5M5ooOCcbHwyoeH4KlbeNm5oQ/exec?start_date=${start_date}&end_date=${end_date}`
   );
 
   //carting combo chart
   const carting_chart_url = axios.get(
-    'https://script.googleusercontent.com/macros/echo?user_content_key=_Cq3j0YgUZyBUXk7NWwekmGUdR6F2hg2Svn2U5ZlKzxNYccwp1egZQLn5GC837Dhil_kgKFMJnpU0Yibx6tKMWFJqGLhqMgWm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPXve1yOI7-V3lOmSMucJR-7U4wHepKsIUOJM5Zy-XwqGS_yAfv2rMA9_tH0NYerpI5ZcGTiYQtqwDPM6Ew1cDMqVEfK_CWZT9z9Jw9Md8uu&lib=MIAm_Kgor3BeFH3Gjej52bzWkEKQozq2-'
+    `https://script.google.com/macros/s/AKfycbz-Wzod1zdRnjFro28xCTA2VXbLnOwPNjsGQ-NS83GzuOaVBp3tdlQ62APG-82xvXfBaw/exec?start_date=${start_date}&end_date=${end_date}`
   );
   axios
     .all([
@@ -62,6 +68,7 @@ exports.warehouseOneTwo = async (req, res) => {
       const cartingDataSet = data[3];
       const stuff_chart = data[4];
       const carting_chart = data[5];
+      console.log(one_two_data_set.data.data);
 
       res.render('warehouseOneTwo', {
         stuffingReportWarehouseOneTwo: one_two_data_set.data.data,
@@ -70,13 +77,13 @@ exports.warehouseOneTwo = async (req, res) => {
         cartingDataSetOneTwo: cartingDataSet.data.data,
         stuffingChartOneTwo: JSON.stringify(stuff_chart.data.data),
         cartingChartOneTwo: JSON.stringify(carting_chart.data.data),
+        isLoaded: true,
         title: 'Warehouse 1-2 Report',
       });
     });
 };
 
 exports.warehouseThree = async (req, res) => {
-  // res.
   const stuff_url = axios.get(
     'https://script.googleusercontent.com/macros/echo?user_content_key=qAfwgfrHfVlvuOcPtbDDJbjx_YYvaPttyZNYCHSahdjSQczRr2qFgDFj86n2JHjhS_2-UwyflFRRhuciLTLo-lFIQ3LPZCFPm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnGRBB_UEiI4Dln0fnBFqm76EnHOce_ZDP3yX8Dv7nU_2DVd4Ficzn8kbzh-ikD2p_vQNL2VYtVD5-0TKUMjmvFUmCMgUb9Pau9z9Jw9Md8uu&lib=MzFsmOfzUWvArIz4A7cM7CTWkEKQozq2-'
   );

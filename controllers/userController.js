@@ -1,4 +1,5 @@
 const User = require('./../models/userModel');
+const sendEmail = require('./../utils/email');
 
 exports.getAllUsers = async (req, res, next) => {
   try {
@@ -31,11 +32,30 @@ exports.createUser = (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
+  // console.log(req.file);
+  // console.log(body);
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
+
+    // const inActive = `Hi ${user.name}. You access to the dashboard application has been revoked`;
+    // const active = `Hi ${user.name}. You access to the dashboard application has been granted`;
+
+    // if (!user || user.active) {
+    //   sendEmail({
+    //     email: user.email,
+    //     subject: 'Access Granted',
+    //     message: active,
+    //   });
+    // } else if (!user || !user.active) {
+    //   sendEmail({
+    //     email: user.email,
+    //     subject: 'Access Revoked',
+    //     message: inActive,
+    //   });
+    // }
 
     res.status(200).json({
       status: 'success',

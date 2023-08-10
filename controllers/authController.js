@@ -21,19 +21,20 @@ exports.signup = async (req, res, next) => {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
 
-    // try {
-    //   console.log('mail send start');
-    //   const message = `Hi ${newUser.name} registered as a user for your Dashboard application. Please review and approve or decline`;
-    //   await sendEmail({
-    //     email: 'kumarsusheel1997@gmail.com',
-    //     subject: `New Registration for ${newUser.name}`,
-    //     message,
-    //   });
-    // } catch (err) {
-    //   res.status(405).json({
-    //     message: err,
-    //   });
-    // }
+    try {
+      // console.log('mail send start');
+      // const message = `Hi ${newUser.name} registered as a user for your Dashboard application. Please review and approve or decline`;
+      // await sendEmail({
+      //   email: 'kumarsusheel1997@gmail.com',
+      //   subject: `New Registration for ${newUser.name}`,
+      //   message,
+      // });
+    } catch (err) {
+      console.log(err);
+      res.status(200).json({
+        message: err,
+      });
+    }
 
     res.status(201).json({
       status: 'Success',
